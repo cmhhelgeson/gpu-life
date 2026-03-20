@@ -32,7 +32,7 @@ const uniformData = new Float32Array(uniformsSize);
 const simSize = 16;
 const simData = new Float32Array(simSize);
 
-function makeRandomMatrix() {
+function makeRandomMatrix(): number[][] {
   const rows = [];
   for (let i = 0; i < colourAmt; i++) {
     const row = [];
@@ -111,13 +111,13 @@ setEngineDisplay(engine);
   //
 
   uniformBuffer = device.createBuffer({
-    size: uniformsSize * 4,
+    size: uniformsSize * Float32Array.BYTES_PER_ELEMENT,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     label: 'uniformBuffer',
   });
 
   simBuffer = device.createBuffer({
-    size: simSize * 4,
+    size: simSize * Float32Array.BYTES_PER_ELEMENT,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
     label: 'simBuffer',
   });

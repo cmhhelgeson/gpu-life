@@ -1,4 +1,5 @@
 import constructShader from './construct.wgsl?raw';
+import commonStructShader from '../commonStruct.wgsl?raw';
 import simShader from './sim.wgsl?raw';
 import {
   linkComputeTimestamp,
@@ -20,7 +21,7 @@ const workgroupSize = 64;
 
 export function setup(device: GPUDevice) {
   const constructModule = device.createShaderModule({
-    code: constructShader,
+    code: commonStructShader + constructShader,
   });
 
   setupTimestamp(device, 'construct');
@@ -36,7 +37,7 @@ export function setup(device: GPUDevice) {
   //
 
   const simModule = device.createShaderModule({
-    code: simShader,
+    code: commonStructShader + simShader,
   });
 
   setupTimestamp(device, 'sim');

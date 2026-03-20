@@ -9,6 +9,7 @@ import cellShader from './cell.wgsl?raw';
 import prefixShader from './prefix.wgsl?raw';
 import sortShader from './sort.wgsl?raw';
 import simShader from './sim.wgsl?raw';
+import commonStructShader from '../commonStruct.wgsl?raw';
 
 const workgroupSize = 128;
 
@@ -34,7 +35,7 @@ export function setup(device2: GPUDevice) {
   device = device2;
 
   const cellModule = device.createShaderModule({
-    code: cellShader,
+    code: commonStructShader + cellShader,
   });
 
   setupTimestamp(device, 'cell');
@@ -82,7 +83,7 @@ export function setup(device2: GPUDevice) {
   //
 
   const simModule = device.createShaderModule({
-    code: simShader,
+    code: commonStructShader + simShader,
   });
 
   setupTimestamp(device, 'countSim');

@@ -1,16 +1,9 @@
-
-struct Uniforms {
-    aspect: f32,
-    mouse: vec4<f32>,
-    size: f32
-}
-
 struct Camera {
     pos: vec2f,
     zoom: f32
 }
 
-struct Particle {
+struct VertexInput {
     @location(0) pos: vec2f,
     @location(1) vel: vec2f,
     @location(2) colour: f32
@@ -27,7 +20,7 @@ struct VertexOutput {
 
 @vertex
 fn vertex(
-    particle: Particle,
+    particle: VertexInput,
     @builtin(vertex_index) vertexIndex: u32
 ) -> VertexOutput {
     let a = uniforms.aspect;

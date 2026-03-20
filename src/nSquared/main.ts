@@ -2,6 +2,7 @@ let pipeline: GPUComputePipeline | undefined;
 let bindGroups: [GPUBindGroup, GPUBindGroup] | undefined;
 
 import computeShader from './compute.wgsl?raw';
+import commonStructShader from './commonStruct.wgsl?raw';
 import {
   linkComputeTimestamp,
   readTimestamp,
@@ -13,7 +14,7 @@ const workgroupSize = 64;
 
 export function setup(device: GPUDevice) {
   const module = device.createShaderModule({
-    code: computeShader,
+    code: commonStructShader + computeShader,
   });
 
   setupTimestamp(device, 'compute');

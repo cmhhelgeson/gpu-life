@@ -1,4 +1,3 @@
-
 struct SortParticle {
     pos: vec2f,
     vel: vec2f,

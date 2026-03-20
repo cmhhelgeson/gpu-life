@@ -1,31 +1,3 @@
-
-struct Uniforms {
-    aspect: f32,
-    mouse: vec4<f32>,
-    size: f32
-}
-
-struct Sim {
-    colours: f32,
-    beta: f32,
-    rMax: f32,
-    force: f32,
-    friction: f32,
-    dt: f32,
-    cellSize: f32,
-    cellAmt: f32,
-    avoidance: f32,
-    worldSize: f32,
-    border: f32,
-    vortex: f32,
-}
-
-struct Particle {
-    pos: vec2f,
-    vel: vec2f,
-    colour: f32,
-}
-
 @group(0) @binding(0) var<uniform> uniforms: Uniforms;
 @group(0) @binding(1) var<uniform> sim: Sim;
 @group(0) @binding(2) var<storage, read> matrix: array<f32>;
@@ -129,7 +101,7 @@ fn main(@builtin(global_invocation_id) global_id: vec3<u32>) {
                 p.vel.y -= dy * 3;
             }
         }
-    }   
+    }
 
     if (sim.border > 0 && d > 0.9) {
         let f = (d - 0.9) * 10;
